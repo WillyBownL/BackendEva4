@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"/>
+</head>
+<body class="container mt-5">
+    <div class="alert alert-info display-1 text-center">Lista de Clientes</div>
+    
+    {% if cliente %}
+
+    <table class="table table-striped table-inverse table-responsive">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Fecha de Nacimiento</th>
+                <th>RUT</th>
+                <th>Correo</th>
+                <th>Telefono</th>
+                <th>Ciudad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in cliente %}
+            <tr>
+                <td>{{ i.nombre }}</td>
+                <td>{{ i.apellido }}</td>
+                <td>{{ i.fecha_nacimiento }}</td>
+                <td>{{ i.rut }}</td>
+                <td>{{ i.correo }}</td>
+                <td>{{ i.telefono }}</td>
+                <td>{{ i.ciudad }}</td>
+                <td>
+                    <a href="/Cliente/editar/{{ i.id }}" class="btn btn-success btn-sm">
+                        <i class="bi bi-pencil"></i> Editar
+                    </a>
+                    <a href="/Cliente/eliminar/{{ i.id }}" class="btn btn-danger btn-sm">
+                        <i class="bi bi-trash"></i> Eliminar
+                    </a>
+                </td>
+            </tr> 
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+    
+    <div class="alert alert-primary" role="alert">
+        <strong>No se encuentran clientes en la base de datos</strong>
+    </div>
+
+    {% endif %}
+
+        <a href="/" class="btn btn-danger">Volver</a>
+        <a href="/Cliente/agregar" class="btn btn-info">Agregar Clientes</a>
+
+
+</body>
+</html>

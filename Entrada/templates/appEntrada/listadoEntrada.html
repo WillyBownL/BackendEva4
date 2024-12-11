@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"/>
+</head>
+<body class="container mt-5">
+    <div class="alert alert-info display-1 text-center">Listado de Entradas</div>
+    
+    {% if entradas %}
+
+    <table class="table table-striped table-inverse table-responsive">
+        <thead class="thead-inverse">
+            <tr>
+                <th>Cliente</th>
+                <th>Concierto</th>
+                <th>Precio</th>
+                <th>Área Designada</th>
+                <th>Fecha de Reserva</th>
+        </thead>
+        <tbody>
+            {% for entrada in entradas %}
+            <tr>
+                <td>{{ entrada.id_cliente }}</td>
+                <td>{{ entrada.id_concierto }}</td>
+                <td>{{ entrada.precio }}</td>
+                <td>{{ entrada.area_designada }}</td>
+                <td>{{ entrada.fecha_reserva }}</td>
+                <td><a href="/Entrada/editar/{{entrada.id}}" class="btn btn-success btn-sm"> <i class="bi bi-pencil"></i></a></td>
+                <td><a href="/Entrada/eliminar/{{entrada.id}}" class="btn btn-danger btn-sm"> <i class="bi bi-trash"></i></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% else %}
+    
+    <div class="alert alert-primary" role="alert">
+        <strong>No se encuentran entradas en el sistema</strong>
+    </div>
+
+    {% endif %}
+
+    <a href="/" class="btn btn-danger">VOLVER</a>
+    <a href="/Entrada/agregar" class="btn btn-info float-end">Agregar Entrada</a>
+</body>
+</html>
